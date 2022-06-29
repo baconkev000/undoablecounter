@@ -63,7 +63,7 @@
                 console.log(count)
                 var historyNum = document.createElement("li");
                 historyNum.innerHTML = count;
-                document.querySelector("#history-ul").appendChild(historyNum);
+                document.querySelector("#history-ul").prepend(historyNum);
             }
         
         function changeHistory(type){
