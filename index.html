@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Undoable Counter</title>
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/styles.css" />
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="box col-sm-6" onclick = changeHistory(2)>Undo</div>
+                <div class="box col-sm-6" onclick = changeHistory(1)>Redo</div>
+            </div>
+            <div class="inc-box-container row"></div>
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div id="history-container" class="col-sm-6">
+                    <h2>History</h2>
+                    <ul id="history-ul">
+
+                    </ul>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>  
+        </div>
+    </body>
+    <script>
+        var count = 0;
+        var incContainer = document.querySelector('.inc-box-container');
+        var incNums = [-100,-10,-1,1,10,100];
+        var historyArr = [count];
+        var i = 0;
+
+        var incedNum = document.createElement("div");
+                incedNum.classList.add("col");
+                incedNum.setAttribute('id', 'incedNum')
+                incedNum.innerHTML = count;
+
+        incNums.forEach(num => {
+            if(Math.round(incNums.length / 2) == i){
+                incContainer.appendChild(incedNum);
+            }else{}
+
+            var incBox = document.createElement("div");
+            incBox.classList.add("box","col");
+            incBox.innerHTML = num;
+
+            incContainer.appendChild(incBox);
+
+            incBox.onclick = () => {
+                updateHistory();
+                count += num;
+                incedNum.innerHTML = count;
+                historyArr.push(count);
+            }
+            i++;
+        });
+
+        function updateHistory(){
+                console.log(count)
+                var historyNum = document.createElement("li");
+                historyNum.innerHTML = count;
+                document.querySelector("#history-ul").appendChild(historyNum);
+            }
+        
+        function changeHistory(type){
+            if(historyArr.length > 1){
+                updateHistory()
+                count = historyArr[historyArr.length-type];
+                incedNum.innerHTML = count;
+            }
+        }
+    </script>
+</html>

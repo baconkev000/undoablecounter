@@ -1,0 +1,38 @@
+.box{
+    text-align: center;
+    font-size: 14px;
+    border: solid 2px black;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.box:hover{
+    background-color: black;
+    color:white;
+}
+
+#incedNum{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#history-container{
+    font-size: 14px;
+    border: solid 2px black;
+    padding: 5px;
+    overflow-y: scroll;
+    height:200px;
+}
+
+#history-container h2{
+    text-align: center;
+}
+
+#history-ul{
+    list-style-type: none;
+}
+
+.row{
+    padding:20px;
+}
